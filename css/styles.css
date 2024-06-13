@@ -9,6 +9,11 @@
     height: 200px;
     width: 360px;
     margin: 12px;
+    transition: transform ease-in-out 200ms;
+}
+
+.gallery-item:hover {
+    transform: scale(104%);
 }
 
 .gallery-image {

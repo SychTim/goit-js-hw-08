@@ -63,7 +63,8 @@ const images = [
       description: 'Lighthouse Coast Sea',
     },
   ];
-const gallery = document.querySelector('.gallery')
+const gallery = document.querySelector('.gallery');
+
 
 const string = images.map(({preview, original, description}) => 
         `<li class="gallery-item">
@@ -75,8 +76,19 @@ const string = images.map(({preview, original, description}) =>
             alt="${description}"
         />
         </a>
-        </li>`).join('')
+        </li>`).join('');
 
-console.log(string);
+gallery.insertAdjacentHTML('afterbegin', string);
 
-gallery.insertAdjacentHTML('afterbegin', string)
+gallery.addEventListener('click', openModal);
+
+function openModal(evt) {
+  evt.preventDefault();
+
+  if (!evt.target.closest('.gallery-item')) {
+    return;
+  };
+
+  const modal = basicLightbox.create(`<img src="${evt.target.dataset.source}" alt="${evt.target.alt}">`);
+  modal.show();
+};
